@@ -297,7 +297,6 @@ span{
 
   .button__menu {
 	margin-right: 25px;
-    margin-top: 20px;
     font-size: 1.25rem;
     background: #2F9FB6;
     border-color: #2F9FB6;
@@ -305,7 +304,8 @@ span{
     border-radius: 25px;
     height: 30px;
     width: 200px;
-    text-transform: uppercase;
+	text-transform: uppercase;
+	margin-top: 5%
   }
 
 .choose-us-title p {
