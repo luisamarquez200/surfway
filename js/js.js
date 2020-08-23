@@ -1,4 +1,53 @@
+/*  visualizar y ocultar menu */
+$(document).ready(function(){
+	$(window).scroll(function(){
+		if($(window).scrollTop()< 80){
+			$('.navbar').css({
+				'margin-top': '-100px',
+				'opacity': '0'
+			});
 
+			$('.navbar-default').css({
+				'background-color':'rgba(59,59,59,0)'
+			});
+		}else {
+			$('.navbar').css({
+				'margin-top': '0',
+				'opacity': '1'
+			});
+
+			$('.navbar-default').css({
+				'background-color':'rgba(59,59,59,.7)',
+				'border-color':'#444'
+			});
+
+			$('navbar-brand img').css({
+				'height':'35px',
+				'padding-top':'0'
+			});
+
+			$('.navbar-nav > li > a').css({
+				'padding-top':'15px'
+			})
+		}
+	});
+});
+
+/* Añadiendo Smooth Scrolling https://css-tricks.com/snippets/jquery/smooth-scrolling/ */
+$(document).ready(function(){
+	$('.nav-item').click(function() {
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+      if (target.length) {
+        $('html, body').animate({
+          scrollTop: target.offset().top
+        }, 1000);
+        return false;
+      }
+    }
+  });
+});
 
 /* Activando un item del menu mediante un click */
 $(document).ready(function(){
@@ -54,42 +103,6 @@ $(document).ready(function(){
 $('.counter-run').counterUp({
     delay: 10,
     time: 2000
-});
-
-
-
-jQuery('codigobarras.svg').each(function(){
-    var $img = jQuery(this);
-    var imgID = $img.attr('id');
-    var imgClass = $img.attr('class');
-    var imgURL = $img.attr('img');
-
-    jQuery.get(imgURL, function(data) {
-        // Get the SVG tag, ignore the rest
-        var $svg = jQuery(data).find('svg');
-
-        // Add replaced image's ID to the new SVG
-        if(typeof imgID !== 'undefined') {
-            $svg = $svg.attr('id', imgID);
-        }
-        // Add replaced image's classes to the new SVG
-        if(typeof imgClass !== 'undefined') {
-            $svg = $svg.attr('class', imgClass+' replaced-svg');
-        }
-
-        // Remove any invalid XML tags as per http://validator.w3.org
-        $svg = $svg.removeAttr('xmlns:a');
-
-        // Check if the viewport is set, if the viewport is not set the SVG wont't scale.
-        if(!$svg.attr('viewBox') && $svg.attr('height') && $svg.attr('width')) {
-            $svg.attr('viewBox', '0 0 ' + $svg.attr('height') + ' ' + $svg.attr('width'))
-        }
-
-        // Replace image with new SVG
-        $img.replaceWith($svg);
-
-    }, 'xml');
-
 });
 
 
